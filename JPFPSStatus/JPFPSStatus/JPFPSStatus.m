@@ -87,7 +87,7 @@
 
 - (void)open {
     
-    NSArray *rootVCViewSubViews=[[UIApplication sharedApplication].delegate window].rootViewController.view.subviews;
+    NSArray *rootVCViewSubViews=[[UIApplication sharedApplication].delegate window].subviews;
     for (UIView *label in rootVCViewSubViews) {
         if ([label isKindOfClass:[UILabel class]]&& label.tag==101) {
             return;
@@ -95,7 +95,8 @@
     }
 
     [displayLink setPaused:NO];
-    [[((NSObject <UIApplicationDelegate> *)([UIApplication sharedApplication].delegate)) window].rootViewController.view addSubview:fpsLabel];
+    [[((NSObject <UIApplicationDelegate> *)([UIApplication sharedApplication].delegate)) window] addSubview:fpsLabel];
+    
 }
 
 - (void)openWithHandler:(void (^)(NSInteger fpsValue))handler{
@@ -107,7 +108,7 @@
     
     [displayLink setPaused:YES];
 
-    NSArray *rootVCViewSubViews=[[UIApplication sharedApplication].delegate window].rootViewController.view.subviews;
+    NSArray *rootVCViewSubViews=[[UIApplication sharedApplication].delegate window].subviews;
     for (UIView *label in rootVCViewSubViews) {
         if ([label isKindOfClass:[UILabel class]]&& label.tag==101) {
             [label removeFromSuperview];
